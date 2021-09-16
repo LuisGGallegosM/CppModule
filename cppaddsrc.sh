@@ -1,13 +1,11 @@
 #!/bin/bash
 
 NAME=${1}
-OUTPUT=${2:-$( basename $PWD )}
+PROJECT=${2:-"$( basename $PWD )"}
 LOCATION=$( dirname ${BASH_SOURCE[0]})
 
-SRC="$( cat ${LOCATION}/templates/base/src.cpp )"
-printf "$SRC" ${NAME} > "${OUTPUT}/${NAME}.cpp"
+sed "s/%project/${PROJECT}/g" ${LOCATION}/templates/base/src.cpp  | sed "s/%name/${NAME}/g" > "${NAME}.cpp"
 echo "cpp source file generated"
 
-SRC="$( cat ${LOCATION}/templates/base/src.h )"
-printf "$SRC" ${NAME} > "${OUTPUT}/${NAME}.h"
+sed "s/%project/${PROJECT}/g" ${LOCATION}/templates/base/src.h  | sed "s/%name/${NAME}/g" > "${NAME}.h"
 echo "header source file generated"

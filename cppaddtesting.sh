@@ -7,8 +7,7 @@ LOCATION=$( dirname ${BASH_SOURCE[0]})
 
 if [ -d "${TESTER}" ]; then
     mkdir -p "${OUTPUT}/test"
-    TEST="$( cat ${LOCATION}/templates/base/test.cpp )"
-    printf "${TEST}" ${TESTER} ${NAME} ${NAME} ${NAME} > "${OUTPUT}/test/test.cpp"
+    sed "s/%project/${NAME}/g" ${LOCATION}/templates/base/test.cpp | sed "s|%lib|${TESTER}|g" > "${OUTPUT}/test/test.cpp"
     echo "testing added"
 else
     echo "Tester library does not exist at ${TESTER}"

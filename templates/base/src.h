@@ -1,7 +1,7 @@
-#ifndef SRC
-#define SRC
+#ifndef %project_%name
+#define %project_%name
 
-namespace %s
+namespace %project
 {
     void dumpFunction();
 }

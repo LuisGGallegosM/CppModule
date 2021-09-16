@@ -1,8 +1,8 @@
 #include<iostream>
 #include<sstream>
 #include<fstream>
-#include"../%s/Tester.h"
-#include"../%s.h"
+#include"%lib/Tester.h"
+#include"%project.h"
 
 using std::cout;
 using std::string;
@@ -14,8 +14,8 @@ void testFirst(Tester* t)
 
 int main()
 {
-    %s::dumpFunction();
-    Tester t("test %s");
+    %project::dumpFunction();
+    Tester t("test %project");
     t.test(testFirst,"first");
     return t.returnValue();
 }

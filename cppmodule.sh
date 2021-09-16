@@ -14,6 +14,7 @@ if [ -f "${OUTPUT}/${NAME}.h" ]; then
     exit 1
 fi
 
+#generate makefile
 MAKE="$( cat ${LOCATION}/templates/${TYPE}/makefile )"
 if [ ${TYPE} == "exec" ] || [ ${TYPE} == "root-exec" ]; then
     printf "${MAKE}" ${NAME} > "${OUTPUT}/makefile"
@@ -22,6 +23,7 @@ else
 fi
 echo "makefile generated"
 
+#generate header
 HEADER="$( cat ${LOCATION}/templates/${TYPE}/main.h)"
 NAMEUPPER="$( echo $NAME | tr [:lower:] [:upper:] )"
 printf "${HEADER}" "${NAMEUPPER}" "${NAMEUPPER}" > "${OUTPUT}/${NAME}.h"
@@ -38,8 +40,6 @@ then
     echo "main cpp source file generated"
 else
     ${LOCATION}/cppaddtesting.sh ${NAME} ${OUTPUT} ${TESTER}
-
-    ${LOCATION}/cppaddsrc.sh "src" "${OUTPUT}"
 fi
 
 echo "done"

@@ -1,8 +1,8 @@
 
 #include<iostream>
-#include"src.h"
+#include"%name.h"
 
-namespace %s
+namespace %project
 {
     void dumpFunction()
     {
