@@ -1,5 +1,5 @@
 
-#LIBRARY MODULE
+#EXECUTABLE MODULE
 GCC:=g++
 FLAGS:=-g
 SOURCES:=$(shell find . -name  "*.cpp" ! -path "./test/*" )
@@ -11,7 +11,7 @@ OUTPUT:=%s
 all : ${OUTPUT}
 
 ${OUTPUT} : ${SOURCES} ${HEADERS}
-	${GCC} ${SOURCES} ${INC} ${FLAGS} -o ${OUTPUT}
+	${GCC} ${SOURCES} ${INC} ${LIBS} ${FLAGS} -o ${OUTPUT}
 	objdump -drCat -Mintel --no-show-raw-insn ${OUTPUT} > ${OUTPUT}.s
 	rm -f *.o
 

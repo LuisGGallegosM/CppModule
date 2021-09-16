@@ -12,7 +12,7 @@ all : ${OUTPUT}.a testing
 	./testing
 
 ${OUTPUT}.a : ${SOURCES} ${HEADERS}
-	${GCC} ${SOURCES} ${INC} ${FLAGS} -c
+	${GCC} ${SOURCES} ${INC} ${LIBS} ${FLAGS} -c
 	ar rcs ${OUTPUT}.a *.o
 	objdump -drCat -Mintel --no-show-raw-insn ${OUTPUT}.a > ${OUTPUT}.s
 	rm -f *.o
@@ -22,4 +22,4 @@ clear :
 	rm -f testing
 
 testing : test/test.cpp ${OUTPUT}.a
-	g++ test/test.cpp ../Tester/libTester.a ${OUTPUT}.a ${INC} ${LIBS} ${FLAGS} -o testing
+	g++ test/test.cpp %s/libTester.a ${OUTPUT}.a ${INC} ${LIBS} ${FLAGS} -o testing

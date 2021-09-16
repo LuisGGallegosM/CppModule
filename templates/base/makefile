@@ -12,7 +12,7 @@ all : ${OUTPUT}.a testing
 	./testing
 
 ${OUTPUT}.a : ${SOURCES} ${HEADERS}
-	${GCC} ${SOURCES} ${INC} ${FLAGS} -c
+	${GCC} ${SOURCES} ${INC} ${LIBS} ${FLAGS} -c
 	ar rcs ${OUTPUT}.a *.o
 	objdump -drCat -Mintel --no-show-raw-insn ${OUTPUT}.a > ${OUTPUT}.s
 	rm -f *.o

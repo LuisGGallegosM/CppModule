@@ -2,7 +2,7 @@
 #include<sstream>
 #include<fstream>
 #include"%lib/Tester.h"
-#include"%project.h"
+#include"../%project.h"
 
 using std::cout;
 using std::string;
@@ -14,7 +14,6 @@ void testFirst(Tester* t)
 
 int main()
 {
-    %project::dumpFunction();
     Tester t("test %project");
     t.test(testFirst,"first");
     return t.returnValue();
