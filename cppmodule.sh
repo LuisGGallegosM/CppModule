@@ -1,10 +1,10 @@
 #!/bin/bash
 
-NAME="${1}"
-TYPE=${2:-"base"}
-OUTPUT="${3:-${1}}"
-TESTER="/lib/Tester"
-LOCATION=$( dirname ${BASH_SOURCE[0]})
+LOCATION=${1}
+NAME="${2}"
+TYPE=${3:-"base"}
+OUTPUT="${4:-${1}}"
+TESTER="/usr/local/lib/Tester"
 
 mkdir "${NAME}"
 echo "generating module :'${NAME}' of type '${TYPE}' at ${OUTPUT}"

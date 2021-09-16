@@ -1,9 +1,10 @@
 #!/bin/bash
 
-NAME=${1}
-OUTPUT=${2}
-TESTER=${3}
-LOCATION=$( dirname ${BASH_SOURCE[0]})
+LOCATION=${1}
+NAME=${2}
+OUTPUT=${3}
+TESTER=${4}
+
 
 if [ -d "${TESTER}" ]; then
     mkdir -p "${OUTPUT}/test"

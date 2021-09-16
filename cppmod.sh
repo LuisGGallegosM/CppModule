@@ -1,19 +1,25 @@
 #!/bin/bash
 
 OPERATION=${1}
-LOCATION=$( dirname ${BASH_SOURCE[0]})
+LOCATION="/usr/local/bin/CppModule"
+
+if [ ${1} == "--version" ]; then
+    echo "cppmodules"
+    echo "v1.0.0"
+    exit 0
+fi
 
 shift
 
 case "${OPERATION}" in
     "module")
-        ${LOCATION}/cppmodule.sh ${1} ${2} ${3}
+        ${LOCATION}/cppmodule.sh ${LOCATION} ${1} ${2} ${3}
     ;;
     "add")
-        ${LOCATION}/cppaddsrc.sh ${1} ${2}
+        ${LOCATION}/cppaddsrc.sh ${LOCATION} ${1} ${2}
     ;;
     "test")
-        ${LOCATION}/addtesting.sh ${1} ${2} ${3}
+        ${LOCATION}/addtesting.sh ${LOCATION} ${1} ${2} ${3}
     ;;
     *)
         echo "error"
