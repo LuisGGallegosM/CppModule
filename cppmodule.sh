@@ -3,7 +3,7 @@
 LOCATION=${1}
 NAME="${2}"
 TYPE=${3:-"base"}
-OUTPUT="${4:-${1}}"
+OUTPUT="${4:-${2}}"
 TESTER="/usr/local/lib/Tester"
 
 mkdir "${NAME}"
