@@ -13,4 +13,3 @@ if [ -d "${TESTER}" ]; then
 else
     echo "Tester library does not exist at ${TESTER}"
 fi
-

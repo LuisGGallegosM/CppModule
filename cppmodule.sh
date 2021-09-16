@@ -27,7 +27,7 @@ GIT="$( cat ${LOCATION}/templates/base/.gitignore)"
 printf "${GIT}" ${NAME} ${NAME} > "${OUTPUT}/.gitignore"
 echo "gitignore generated"
 
-if [ ${TYPE} = "exec" ] | [ ${TYPE} = "root-exec" ]
+if [ ${TYPE} == "exec" ] || [ ${TYPE} == "root-exec" ]
 then
     MAIN=$( cat ${LOCATION}/templates/${TYPE}/main.cpp)
     printf "${MAIN}" ${NAME} ${NAME} > "${OUTPUT}/${NAME}.cpp"
