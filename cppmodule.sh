@@ -1,34 +1,37 @@
 #!/bin/bash
 
 NAME="${1}"
-OUTPUT="${2}"
-TYPE=${3:-"base"}
-TESTER="../../Tester"
+TYPE=${2:-"base"}
+OUTPUT="${3:-${1}}"
+TESTER="/lib/Tester"
+LOCATION=$( dirname ${BASH_SOURCE[0]})
+
+mkdir "${NAME}"
 
 if [ -f "${OUTPUT}/${NAME}.h" ]; then
     echo "File \"${OUTPUT}/${NAME}.h\" already exists"
     exit 1
 fi
 
-MAKE="$( cat templates/${TYPE}/makefile )"
+MAKE="$( cat ${LOCATION}/templates/${TYPE}/makefile )"
 printf "${MAKE}" ${NAME} ${TESTER} > "${OUTPUT}/makefile"
-HEADER="$( cat templates/${TYPE}/main.h)"
+HEADER="$( cat ${LOCATION}/templates/${TYPE}/main.h)"
 NAMEUPPER="$( echo $NAME | tr [:lower:] [:upper:] )"
 printf "${HEADER}" "${NAMEUPPER}" "${NAMEUPPER}" > "${OUTPUT}/${NAME}.h"
 
-GIT="$( cat templates/base/.gitignore)"
+GIT="$( cat ${LOCATION}/templates/base/.gitignore)"
 printf "${GIT}" ${NAME} ${NAME} > "${OUTPUT}/.gitignore"
 
 if [ ${TYPE} = "exec" ] | [ ${TYPE} = "root-exec" ]
 then
-    MAIN=$( cat templates/${TYPE}/main.cpp)
+    MAIN=$( cat ${LOCATION}/templates/${TYPE}/main.cpp)
     printf "${MAIN}" ${NAME} ${NAME} > "${OUTPUT}/${NAME}.cpp"
 else
-    ./cppaddtesting.sh ${NAME} ${OUTPUT} ${TESTER}
+    ${LOCATION}/cppaddtesting.sh ${NAME} ${OUTPUT} ${TESTER}
 
-    SRC="$( cat templates/base/src.cpp )"
+    SRC="$( cat ${LOCATION}/templates/base/src.cpp )"
     printf "$SRC" ${NAME} > "${OUTPUT}/src.cpp"
 
-    SRC="$( cat templates/base/src.h )"
+    SRC="$( cat ${LOCATION}/templates/base/src.h )"
     printf "$SRC" ${NAME} > "${OUTPUT}/src.h"
 fi
