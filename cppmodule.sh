@@ -39,13 +39,7 @@ then
 else
     ${LOCATION}/cppaddtesting.sh ${NAME} ${OUTPUT} ${TESTER}
 
-    SRC="$( cat ${LOCATION}/templates/base/src.cpp )"
-    printf "$SRC" ${NAME} > "${OUTPUT}/src.cpp"
-    echo "cpp source file generated"
-
-    SRC="$( cat ${LOCATION}/templates/base/src.h )"
-    printf "$SRC" ${NAME} > "${OUTPUT}/src.h"
-    echo "header source file generated"
+    ${LOCATION}/cppaddsrc.sh "src" "${OUTPUT}"
 fi
 
 echo "done"
