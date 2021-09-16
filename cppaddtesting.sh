@@ -9,6 +9,7 @@ if [ -d "${TESTER}" ]; then
     mkdir -p "${OUTPUT}/test"
     TEST="$( cat ${LOCATION}/templates/base/test.cpp )"
     printf "${TEST}" ${TESTER} ${NAME} ${NAME} ${NAME} > "${OUTPUT}/test/test.cpp"
+    echo "testing added"
 else
     echo "Tester library does not exist at ${TESTER}"
 fi
