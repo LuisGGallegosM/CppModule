@@ -15,7 +15,11 @@ if [ -f "${OUTPUT}/${NAME}.h" ]; then
 fi
 
 MAKE="$( cat ${LOCATION}/templates/${TYPE}/makefile )"
-printf "${MAKE}" ${NAME} ${TESTER} > "${OUTPUT}/makefile"
+if [ ${TYPE} == "exec" ] || [ ${TYPE} == "root-exec" ]; then
+    printf "${MAKE}" ${NAME} > "${OUTPUT}/makefile"
+else
+    printf "${MAKE}" ${NAME} ${TESTER} > "${OUTPUT}/makefile"
+fi
 echo "makefile generated"
 
 HEADER="$( cat ${LOCATION}/templates/${TYPE}/main.h)"
