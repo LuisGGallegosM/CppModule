@@ -1,10 +1,9 @@
 #!/bin/bash
 
 LOCATION=${1}
-NAME=${2}
-OUTPUT=${3}
-TESTER=${4}
-
+TESTER=${2}
+NAME=${3}
+OUTPUT=${4}
 
 if [ -d "${TESTER}" ]; then
     mkdir -p "${OUTPUT}/test"

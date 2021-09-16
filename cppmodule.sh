@@ -1,10 +1,10 @@
 #!/bin/bash
 
 LOCATION=${1}
-NAME="${2}"
-TYPE=${3:-"base"}
-OUTPUT="${4:-${2}}"
-TESTER="/usr/local/lib/Tester"
+TESTER=${2}
+NAME="${3}"
+TYPE=${4:-"base"}
+OUTPUT="${5:-${3}}"
 
 mkdir "${NAME}"
 echo "generating module :'${NAME}' of type '${TYPE}' at ${OUTPUT}"
@@ -45,7 +45,7 @@ then
     printf "$(cat ${LOCATION}/templates/base/launchExec.json)" ${NAMELOWER} > "${OUTPUT}/.vscode/launch.json"
     echo "debug vscode launch generated"
 else
-    ${LOCATION}/cppaddtesting.sh ${LOCATION} ${NAME} ${OUTPUT} ${TESTER}
+    ${LOCATION}/cppaddtesting.sh ${LOCATION} ${TESTER} ${NAME} ${OUTPUT}
 
     cp "${LOCATION}/templates/base/launchLib.json" "${OUTPUT}/.vscode/launch.json"
     echo "debug vscode launch generated"

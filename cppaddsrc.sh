@@ -1,8 +1,9 @@
 #!/bin/bash
 
 LOCATION=${1}
-NAME=${2}
-PROJECT=${3:-"$( basename $PWD )"}
+TESTER=${2}
+NAME=${3}
+PROJECT=${4:-"$( basename $PWD )"}
 
 sed "s/%project/${PROJECT}/g" ${LOCATION}/templates/base/src.cpp  | sed "s/%name/${NAME}/g" > "${NAME}.cpp"
 echo "cpp source file generated"

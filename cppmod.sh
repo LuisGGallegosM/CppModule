@@ -1,7 +1,8 @@
 #!/bin/bash
 
 OPERATION=${1}
-LOCATION="/usr/local/bin/CppModule"
+LOCATION="${HOME}/.local/bin/CppModule"
+TESTER="${HOME}/.local/lib/Tester"
 
 if [ ${1} == "--version" ]; then
     echo "cppmodules"
@@ -13,13 +14,13 @@ shift
 
 case "${OPERATION}" in
     "module")
-        ${LOCATION}/cppmodule.sh ${LOCATION} ${1} ${2} ${3}
+        ${LOCATION}/cppmodule.sh ${LOCATION} ${TESTER} ${1} ${2} ${3}
     ;;
     "add")
-        ${LOCATION}/cppaddsrc.sh ${LOCATION} ${1} ${2}
+        ${LOCATION}/cppaddsrc.sh ${LOCATION} ${TESTER} ${1} ${2}
     ;;
     "test")
-        ${LOCATION}/addtesting.sh ${LOCATION} ${1} ${2} ${3}
+        ${LOCATION}/addtesting.sh ${LOCATION} ${TESTER} ${1} ${2} ${3}
     ;;
     *)
         echo "error"
