@@ -9,7 +9,7 @@ using std::string;
 
 void testFirst(Tester* t)
 {
-    t->assert_true(false,"test initialized");
+    t->assert_true(true,"test initialized");
 }
 
 int main()
