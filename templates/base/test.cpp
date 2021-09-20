@@ -1,7 +1,7 @@
 #include<iostream>
 #include<sstream>
 #include<fstream>
-#include"%lib/Tester.h"
+#include"Tester/Tester.h"
 #include"../%project.h"
 
 using std::cout;

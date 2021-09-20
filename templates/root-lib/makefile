@@ -4,8 +4,8 @@ GCC:=g++
 FLAGS:=-g
 SOURCES:=$(shell find . -name  "*.cpp" ! -path "./test/*" )
 HEADERS:=$(shell find . -name  "*.h" ! -path "./test/*" )
-INC:=
-LIBS:=
+INC:=-I $(shell $(ROOTSYS)/bin/root-config --cflags)
+LIBS:=$(shell $(ROOTSYS)/bin/root-config --ldflags --glibs) -lRooFit -lRooFitCore -lMinuit -lTester
 OUTPUT:=lib%s
 
 all : ${OUTPUT}.a testing
@@ -22,4 +22,4 @@ clear :
 	rm -f testing
 
 testing : test/test.cpp ${OUTPUT}.a
-	g++ test/test.cpp %s/libTester.a ${OUTPUT}.a ${INC} ${LIBS} ${FLAGS} -o testing
+	g++ test/test.cpp ${OUTPUT}.a ${INC} ${LIBS} ${FLAGS} -o testing
