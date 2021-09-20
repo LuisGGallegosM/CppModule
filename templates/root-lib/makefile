@@ -6,7 +6,9 @@ SOURCES:=$(shell find . -name  "*.cpp" ! -path "./test/*" )
 HEADERS:=$(shell find . -name  "*.h" ! -path "./test/*" )
 INC:=-I $(shell $(ROOTSYS)/bin/root-config --cflags)
 LIBS:=$(shell $(ROOTSYS)/bin/root-config --ldflags --glibs) -lRooFit -lRooFitCore -lMinuit -lTester
-OUTPUT:=lib%s
+INSTALL_DIR:=${HOME}/.local
+NAME:=%s
+OUTPUT:=lib${NAME}
 
 all : ${OUTPUT}.a testing
 	./testing
@@ -23,3 +25,12 @@ clear :
 
 testing : test/test.cpp ${OUTPUT}.a
 	g++ test/test.cpp ${OUTPUT}.a ${INC} ${LIBS} ${FLAGS} -o testing
+
+install: ${OUTPUT}.a
+	cp ${OUTPUT}.a ${INSTALL_DIR}/lib/${OUTPUT}.a
+	mkdir -p ${INSTALL_DIR}/include/${NAME}
+	cp ${NAME}.h ${INSTALL_DIR}/include/${NAME}/${NAME}.h
+
+uninstall:
+	rm -f ${INSTALL_DIR}/lib/${OUTPUT}.a
+	rm -rf ${INSTALL_DIR}/include/${NAME}
